@@ -1,59 +1,49 @@
-import { NavLink } from "react-router-dom"
-import Logo from "../assets/Logos/twitter.svg"
-import { navbarList } from "../hooks/useRoute"
-import { useContext, useState } from "react"
-import Button from "../Components/Button/Button"
-import defaultAvatar from "../assets/Images/emptyAvatar.jpg"
-import { BsThreeDots } from "react-icons/bs"
-import Modal from "../Components/Modal/Modal"
-import Spinner from "../assets/Images/spinner.png"
-import { Context } from "../Context/context"
+import { NavLink } from "react-router-dom";
+import Logo from "../assets/Logos/udemy.svg";
+import { navbarList } from "../hooks/useRoute";
+import { useContext, useState } from "react";
+import { Context } from "../Context/context";
+import { FiChevronRight } from "react-icons/fi";
+
 const Navbar = () => {
-  const userInfo = JSON.parse(localStorage.getItem("user_info") || {})
-    const [isLoading, setIsLoading] = useState(false)
-    const [activeIcon, setActiveIcon] = useState("Home")
-    const [logoutModalOpen, setLogoutModalOpen] = useState(false)
-    const {setToken} = useContext(Context)
-    const handleLogout = () => {
-       setIsLoading(true)
-       setTimeout(()=> {
-        setIsLoading(false)
-        setToken(null)
-       },1000)
-    }
+  const userInfo = JSON.parse(localStorage.getItem("user_info") || "{}");
+  const [activeIcon, setActiveIcon] = useState("Home");
+  const { setToken } = useContext(Context);
 
   return (
-    <div className='w-[22%] h-[100vh] border-r-2 border-slate-400 overflow-y-auto pt-[35px]'>
-      <img src={Logo} alt="Logo"  width={40} height={40}/>
-      <nav className="mt-10">
-        {navbarList.map(item => (
-            <NavLink onClick={(e) => setActiveIcon(e.target.textContent)} to={item.path} key={item.id} className={"flex items-center gap-2 p-4"}>
-                {activeIcon === item.title ? item.activeIcon : item.icon}
-                <span>{item.title}</span>
-            </NavLink>
+    <div className="w-[300px] h-[100vh] overflow-y-auto pt-[35px] bg-[#152259] text-white mx-auto flex items-center flex-col">
+      <img src={Logo} alt="Logo" width={65} height={65} />
+      <p className="font-semibold mt-[22px] leading-[17px]">Udemy Inter. school</p>
+      <span className="h-[1px] bg-[#BDBDBD] w-[100%] mt-[30px]"></span>
+      <nav className="mt-[15px] flex flex-col w-full gap-[8px] text-[14px]">
+        {navbarList.map((item, index) => (
+          <NavLink
+            onClick={() => setActiveIcon(item.title)}
+            to={item.path}
+            key={item.id}
+            className={`flex items-center justify-between gap-2 p-4 rounded-[4px] w-[85%] transition-all duration-300 cursor-pointer ${
+              activeIcon === item.title
+                ? "bg-[#509CDB] w-[85%] mx-auto h-[40px] text-[14px]"
+                : "hover:bg-[#3B5998] w-[85%] mx-auto h-[40px]"
+            } ${index === navbarList.length - 1 ? "mt-20" : ""}`} // Add mt-20 to the last item
+          >
+            <div className="flex items-center gap-2">
+              {activeIcon === item.title ? item.activeIcon : item.icon}
+              <span>{item.title}</span>
+            </div>
+            {item.title === "Features" && (
+              <div className="bg-[#E0E7FF] text-[#000000] font-bold text-[10px] px-2 py-1 rounded-full leading-[12px] w-[40px]">
+                NEW
+              </div>
+            )}
+            {activeIcon === item.title && item.title !== "Features" && (
+              <FiChevronRight size={20} className="text-white" />
+            )}
+          </NavLink>
         ))}
       </nav>
-      <Button text={"Tweet"} extraClass={"!w-[250px]"}/>
-
-      <div onClick={()=> setLogoutModalOpen(true)} className="flex  cursor-pointer w-[250px] mt-5 gap-2">
-          <img src={defaultAvatar} alt="userImage" width={50} height={50} />
-          <div className="flex flex-col w-full">
-              <h2 className="text-[20px] font-semibold">{userInfo.username}</h2>
-              <p className="text-[15px] text-slate-500">{userInfo.email ? `@${userInfo.email}` : ""}</p>
-          </div>
-          <BsThreeDots size={"35px"}/>
-      </div>
-      <Modal openModal={logoutModalOpen} setOpenModal={setLogoutModalOpen}>
-         <div className="flex flex-col gap-3 mt-20">
-         <h2 className="text-[25px] font-semibold flex justify-center">Do you want to log out?</h2>
-         <div className="flex justify-center items-end gap-2">
-            <Button onClick={()=> setLogoutModalOpen(false)} text={"Cancel"} extraClass={"!w-[200px]"}/>
-            <Button loadingImage={Spinner} isLoading={isLoading} onClick={handleLogout} text={"Log Out"} extraClass={"!w-[200px] !bg-red-600"}/>
-         </div>
-         </div>
-      </Modal>
     </div>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

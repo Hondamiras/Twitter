@@ -1,23 +1,21 @@
-import Home from "./Home"
-import Explore from "./Explore"
-import Notifications from "./Notifications"
-import Messages from "./Messages"
-import Bookmarks from "./Bookmarks"
-import Lists from "./Lists"
-import Profile from "./Profile"
-import More from "./More"
+import Dashboard from "./Dashboard"
+import Teachers from "./Teachers"
+import Students from "./Students"
+import Billing from "./Billing"
+import Settings from "./Settings"
+import Exams from "./Exams"
 import NotFound from "./NotFound"
+import Features from "./Features"
 
 
 export {
-    Home,
-    Explore,
-    Notifications,
-    Messages,
-    Bookmarks,
-    Lists,
-    Profile,
-    More,
-    NotFound
+    Dashboard,
+    Teachers,
+    Students,
+    Billing,
+    Settings,
+    Exams,
+    NotFound,
+    Features
 }
 

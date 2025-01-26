@@ -1,16 +1,11 @@
 export const PATH = {
     home:"/",
-    explore:"/explore",
-    notification:"/notification",
-    messages:"/messages",
-    bookmarks:"/bookmarks",
-    lists:"/lists",
-    profile:"/profile",
-    profileTweets:"/profile/tweets",
-    profileTweetsReplies:"/profile/tweetsandreplies",
-    profileMedia:"/profile/media",
-    profileLikes:"/profile/likes",
-    more:"/more",
+    teachers:"/teachers",
+    students:"/students",
+    billing:"/billing",
+    settings:"/settings",
+    exams:"/exams",
+    features:"/features",
     register:"/register",
-    notFound:"*"
+    notFound:"*" 
 }

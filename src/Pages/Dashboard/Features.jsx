@@ -1,7 +1,7 @@
 import React from 'react'
 import WarningPage from '../../Components/WarningPage/Warning'
 
-const More = () => {
+const Notifications = () => {
   return (
     <>
       <WarningPage/>
@@ -9,4 +9,4 @@ const More = () => {
   )
 }
 
-export default More
+export default Notifications

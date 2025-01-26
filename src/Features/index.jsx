@@ -1,18 +1,15 @@
 import React from 'react'
 import Navbar from '../Modules/Navbar'
-import Sidebar from '../Modules/Sidebar'
 import Header from '../Modules/Header'
 
 const DashboardLayout = ({children}) => {
   return (
-    <div className='px-10 flex'>
+    <div className='flex'>
       <Navbar/>
-          <div className='w-[56%] h-[100vh] overflow-y-auto border-r-2 border-slate-400'>
+          <div className='w-[100%] h-[100vh] overflow-y-auto'>
            <Header/>
            {children}
           </div>
-            <Sidebar/>
-          
     </div>
   )
 }
